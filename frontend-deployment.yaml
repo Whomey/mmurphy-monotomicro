@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: MonoToMicro
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: MonoToMicro
+  template:
+    metadata:
+      labels:
+        app: MonoToMicro
+    spec:
+      containers:
+      - name: frontend
+        image: whomey/udagram-frontend:v2
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
